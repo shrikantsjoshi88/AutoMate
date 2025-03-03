@@ -1,20 +1,11 @@
 import os
-from dotenv import load_dotenv
 import google.generativeai as genai
 import streamlit as st
 
-#load_dotenv(".env")
+genai.configure(api_key = os.getenv("GOOGLE_API_KEY"))
 
-# Retrieve the API key from the environment variable
-
-GEMINI_API_KEY = os.getenv('GENAI_API_KEY')
-
-# Configure the Gemini API key
-
-genai.configure(api_key=GEMINI_API_KEY)
-
-# Define the function to generate test cases
-
+# model = genai.GenerativeModel("gemini-2.0-flash") 
+# chat = model.start_chat()
 # Define the function to generate test cases using Gemini
 def generate_test_cases(requirement):
     try:
@@ -26,7 +17,7 @@ def generate_test_cases(requirement):
 
 # Streamlit app layout
 
-st.title('TestMate – Your AI-powered test case wizard!')
+st.title('TestMate - Your AI-powered test case wizard!')
 
 st.write('Calling all testers! Enter your software requirements and let the magic of test case generation begin!')
 
