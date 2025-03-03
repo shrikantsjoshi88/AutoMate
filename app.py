@@ -2,7 +2,8 @@ import os
 import google.generativeai as genai
 import streamlit as st
 
-genai.configure(api_key = os.getenv("GENAI_API_KEY"))
+google_api_key = os.getenv("GENAI_API_KEY")
+genai.configure(api_key=google_api_key)
 
 # model = genai.GenerativeModel("gemini-2.0-flash") 
 # chat = model.start_chat()
