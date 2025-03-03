@@ -57,6 +57,6 @@ if st.button('Generate Test Cases'):
 
     else:
 
-        st.error('Please enter a requirement to generate test cases.')
+        st.error('Enter a requirement and let the test cases roll in!')
 
-st.write('Caution - Review these test cases carefully and modify or update them as per your project-specific requirements.Ensure that all critical scenarios are covered to avoid gaps in testing')
+st.write('Caution! Test cases ahead! Review them carefully, tweak as needed and make sure no critical scenarios slip through the cracks')
