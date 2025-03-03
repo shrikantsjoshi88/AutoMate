@@ -1,8 +1,9 @@
+import os
+from dotenv import load_dotenv
+import google.generativeai as genai
 import streamlit as st
 
-import google.generativeai as genai
-
-import os
+load_dotenv(".env")
 
 # Retrieve the API key from the environment variable
 
@@ -17,7 +18,7 @@ genai.configure(api_key=GEMINI_API_KEY)
 # Define the function to generate test cases using Gemini
 def generate_test_cases(requirement):
     try:
-        model = genai.GenerativeModel("gemini-pro")  # Use appropriate Gemini model
+        model = genai.GenerativeModel("gemini-2.0-flash")  # Use appropriate Gemini model
         response = model.generate_content(requirement)
         return response.text  # Extract the generated text
     except Exception as e:
