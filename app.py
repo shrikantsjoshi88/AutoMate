@@ -1,42 +1,33 @@
 import streamlit as st
 
-import openai
+import google.generativeai as genai
 
 import os
 
 # Retrieve the API key from the environment variable
 
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
-# Initialize the OpenAI client with the API key
+# Configure the Gemini API key
 
-openai.api_key = OPENAI_API_KEY
+genai.configure(api_key=GEMINI_API_KEY)
 
 # Define the function to generate test cases
 
+# Define the function to generate test cases using Gemini
 def generate_test_cases(requirement):
-
-    response = openai.chat.completions.create(
-
-        model="gpt-3.5-turbo",
-
-        messages=[
-
-            {"role": "system", "content": "You are a helpful assistant capable of generating software test cases."},
-
-            {"role": "user", "content": requirement}
-
-        ]
-
-    )
-
-    return response.choices[0].message.content
+    try:
+        model = genai.GenerativeModel("gemini-pro")  # Use appropriate Gemini model
+        response = model.generate_content(requirement)
+        return response.text  # Extract the generated text
+    except Exception as e:
+        return str(e)
 
 # Streamlit app layout
 
-st.title('TestMate - Test Case Generator')
+st.title('TestMate – Your AI-powered test case wizard!')
 
-st.write('Enter your software requirement(s) to generate test cases.')
+st.write('Calling all testers! Enter your software requirements and let the magic of test case generation begin!')
 
 # Text area for user to enter the software requirement
 
@@ -48,19 +39,19 @@ if st.button('Generate Test Cases'):
 
     if requirement:
 
-        with st.spinner('Generating...'):
+        with st.spinner('Hold on tight... Test cases are brewing!'):
 
             try:
 
                 test_cases = generate_test_cases(requirement)
 
-                st.success('Generated Test Cases')
+                st.success('Boom! Test cases have been successfully generated! Now go forth and test like a champ!')
 
                 st.write(test_cases)
 
             except Exception as e:
 
-                st.error('An error occurred while generating test cases.')
+                st.error('Oops! An error crashed the party while generating test cases! Time to debug and save the day!')
 
                 st.error(e)
 
