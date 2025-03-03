@@ -3,11 +3,11 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 import streamlit as st
 
-load_dotenv(".env")
+#load_dotenv(".env")
 
 # Retrieve the API key from the environment variable
 
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+GEMINI_API_KEY = os.getenv('GENAI_API_KEY')
 
 # Configure the Gemini API key
 
